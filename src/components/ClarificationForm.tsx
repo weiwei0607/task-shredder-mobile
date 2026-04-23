@@ -8,7 +8,6 @@ import {
   ScrollView,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import Animated, { FadeInRight } from 'react-native-reanimated';
 
 interface ClarificationFormProps {
   questions: { question: string; options: string[] }[];
@@ -38,7 +37,7 @@ export default function ClarificationForm({
   };
 
   return (
-    <Animated.View entering={FadeInRight.duration(350)} style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.heading}>
         <View style={styles.iconBox}>
           <Ionicons name="bulb-outline" size={22} color="#818cf8" />
@@ -94,7 +93,7 @@ export default function ClarificationForm({
         <Text style={styles.submitText}>確認回答，開始生成碎片</Text>
         <Ionicons name="chevron-forward" size={18} color="#fff" />
       </TouchableOpacity>
-    </Animated.View>
+    </View>
   );
 }
 

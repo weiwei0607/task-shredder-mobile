@@ -1,4 +1,3 @@
-import 'react-native-reanimated';
 import React, { useState } from 'react';
 import {
   SafeAreaView,
@@ -10,7 +9,6 @@ import {
   Alert,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 
 import Header from './src/components/Header';
 import BrainDumpPanel from './src/components/BrainDumpPanel';
@@ -124,23 +122,23 @@ export default function App() {
 
         {/* Loading View */}
         {isProcessing && (
-          <Animated.View entering={FadeIn} exiting={FadeOut} style={styles.loadingPanel}>
+          <View style={styles.loadingPanel}>
             <View style={styles.loadingDots}>
               {[0, 1, 2].map(i => (
                 <View key={i} style={styles.loadingDot} />
               ))}
             </View>
             <Text style={styles.loadingText}>正在拆解任務⋯⋯</Text>
-          </Animated.View>
+          </View>
         )}
 
         {/* Empty State */}
         {showEmpty && (
-          <Animated.View entering={FadeIn} style={styles.emptyState}>
+          <View style={styles.emptyState}>
             <Ionicons name="cut-outline" size={48} color="#3f3f46" />
             <Text style={styles.emptyTitle}>準備好擊碎拖延症了嗎？</Text>
             <Text style={styles.emptySubtitle}>在上方輸入文字，AI 會自動幫你把巨大任務切成小碎片。</Text>
-          </Animated.View>
+          </View>
         )}
 
         {/* Clarification Questions */}

@@ -9,7 +9,6 @@ import {
   ScrollView,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import Animated, { FadeInDown, Layout } from 'react-native-reanimated';
 
 type Tab = 'todo' | 'summary';
 
@@ -59,9 +58,8 @@ export default function TaskBoard({ tasks, setTasks, summary }: TaskBoardProps) 
     const isOverdue = task.daysLeft < 0;
 
     return (
-      <Animated.View
-        entering={FadeInDown.duration(300)}
-        layout={Layout.springify()}
+      <View
+        key={task.id}
         style={[styles.taskCard, allDone && styles.taskCardDone]}
       >
         {/* Task Header */}
@@ -134,7 +132,7 @@ export default function TaskBoard({ tasks, setTasks, summary }: TaskBoardProps) 
             </TouchableOpacity>
           ))}
         </View>
-      </Animated.View>
+      </View>
     );
   };
 
@@ -174,7 +172,7 @@ export default function TaskBoard({ tasks, setTasks, summary }: TaskBoardProps) 
 
       {/* Summary Tab */}
       {activeTab === 'summary' && (
-        <Animated.View entering={FadeInDown.duration(300)} style={styles.summaryContainer}>
+        <View style={styles.summaryContainer}>
           <Text style={styles.summaryHeading}>✨ AI 重點提煉</Text>
           {summary.map((text, i) => (
             <View key={i} style={styles.summaryItem}>
@@ -184,7 +182,7 @@ export default function TaskBoard({ tasks, setTasks, summary }: TaskBoardProps) 
               <Text style={styles.summaryText}>{text}</Text>
             </View>
           ))}
-        </Animated.View>
+        </View>
       )}
     </View>
   );

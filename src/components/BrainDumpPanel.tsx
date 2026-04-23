@@ -8,7 +8,6 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import Animated, { FadeInDown } from 'react-native-reanimated';
 
 type Mode = 'auto' | 'none' | 'ask';
 
@@ -38,7 +37,7 @@ export default function BrainDumpPanel({
   const [focused, setFocused] = useState(false);
 
   return (
-    <Animated.View entering={FadeInDown.duration(400)} style={styles.container}>
+    <View style={styles.container}>
       {/* Section Header */}
       <View style={styles.sectionHeader}>
         <Ionicons name="sparkles" size={16} color="#f59e0b" />
@@ -100,7 +99,7 @@ export default function BrainDumpPanel({
           </>
         )}
       </TouchableOpacity>
-    </Animated.View>
+    </View>
   );
 }
 

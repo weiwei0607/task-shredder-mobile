@@ -1,5 +1,5 @@
-// 🔧 開發時請將此 IP 改為您電腦在區域網路的 IP（執行 next dev 時會顯示 Network: http://xxx:3000）
-export const BACKEND_URL = 'http://172.20.10.3:3000';
+// Set EXPO_PUBLIC_BACKEND_URL in your .env to point to your Next.js server
+export const BACKEND_URL = process.env.EXPO_PUBLIC_BACKEND_URL || 'http://localhost:3000';
 
 export async function analyzeText(text: string, mode: string): Promise<any> {
   const response = await fetch(`${BACKEND_URL}/api/analyze`, {

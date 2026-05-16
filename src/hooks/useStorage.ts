@@ -21,7 +21,9 @@ export function useStorage<T>(key: string, initialValue: T): [T, (value: T | ((v
   const setValue = useCallback((value: T | ((val: T) => T)) => {
     setStoredValue(prev => {
       const valueToStore = value instanceof Function ? value(prev) : value;
-      AsyncStorage.setItem(key, JSON.stringify(valueToStore));
+      AsyncStorage.setItem(key, JSON.stringify(valueToStore)).catch(err => {
+        console.warn(`[useStorage] Failed to persist "${key}":`, err);
+      });
       return valueToStore;
     });
   }, [key]);

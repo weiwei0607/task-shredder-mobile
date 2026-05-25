@@ -36,9 +36,11 @@ export default function TaskBoard({ tasks, setTasks, summary }: TaskBoardProps) 
   };
 
   const updateDeadline = (taskId: string, newDate: string) => {
+    const parsed = new Date(newDate + 'T00:00:00');
+    if (isNaN(parsed.getTime())) return;
     const todayStr = new Date().toISOString().split('T')[0];
     const diff = Math.round(
-      (new Date(newDate + 'T00:00:00').getTime() - new Date(todayStr + 'T00:00:00').getTime()) /
+      (parsed.getTime() - new Date(todayStr + 'T00:00:00').getTime()) /
         (1000 * 3600 * 24)
     );
     setTasks(prev =>

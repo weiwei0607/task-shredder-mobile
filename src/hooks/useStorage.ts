@@ -22,7 +22,7 @@ export function useStorage<T>(key: string, initialValue: T): [T, (value: T | ((v
     setStoredValue(prev => {
       const valueToStore = value instanceof Function ? value(prev) : value;
       AsyncStorage.setItem(key, JSON.stringify(valueToStore)).catch(err => {
-        console.warn(`[useStorage] Failed to persist "${key}":`, err);
+        console.error('AsyncStorage write failed:', err);
       });
       return valueToStore;
     });
